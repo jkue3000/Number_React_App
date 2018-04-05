@@ -8,9 +8,9 @@ import images from "./images.json"
 class App extends Component {
 
   state = {
-    message: "Chose a Number only once to win.",
-    highScore: 0,
-    currentScore: 0,
+    message: "Count One Through Sixteen and You Might Win.... ",
+    userHighScore: 0,
+    userScore: 0,
     images: images,
     notChosenPic: images
   }
@@ -27,17 +27,17 @@ class App extends Component {
 
     if (findCharacter === undefined) {
       this.setState({
-        message: "Incorrect Guess!",
-        highScore: (this.state.currentScore > this.state.highScore) ? this.state.currentScore : this.state.highScore,
-        currentScore: 0,
+        message: "Really. You just lost :(",
+        userHighScore: (this.state.userScore > this.state.userHighScore) ? this.state.userScore : this.state.userHighScore,
+        userScore: 0,
         images: images,
         notChosenPic: images
       });
     } else {
       const findNewCharacter = this.state.notChosenPic.filter(item => item.character !== character);
       this.setState({
-        message: "Correct Guess!",
-        currentScore: this.state.currentScore + 1,
+        message: "You just passed to the next grade :D",
+        userScore: this.state.userScore + 1,
         images: images,
         notChosenPic: findNewCharacter
       });
@@ -50,8 +50,8 @@ class App extends Component {
       <Wrapper>
         <Navbar
         message = { this.state.message }
-        currentScore = { this.state.currentScore }
-        highScore = { this.state.highScore }
+        userScore = { this.state.userScore }
+        userHighScore = { this.state.userHighScore }
         />
         <Title />
         {
@@ -60,7 +60,7 @@ class App extends Component {
               character = { item.character }
               photo = { item.image }
               selectPhoto = { this.selectPhoto }
-              currentScore = { this.state.currentScore }
+              userScore = { this.state.userScore }
             />
           ))
         }
