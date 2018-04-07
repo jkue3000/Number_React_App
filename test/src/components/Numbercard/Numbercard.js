@@ -6,7 +6,7 @@ const Numbercard = props => (
     <div>
         <a onClick={() => props.selectPhoto(props.numcard)} className = { props.currentScore === 0 } >
             
-            <img class="thumbnail" alt={ props.numcard } src={ props.photo } />
+            <img class="numStyle" alt={ props.numcard } src={ props.photo } />
 
         </a>
 
