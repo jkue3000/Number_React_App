@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import Navbar from "./components/Navbar";
+import Nav from "./components/Nav";
 import Title from "./components/Title";
 import Wrapper from "./components/Wrapper";
-import Characters from "./components/Characters";
+import Numbercard from "./components/Numbercard";
 import images from "./images.json"
 
 class App extends Component {
@@ -22,10 +22,10 @@ class App extends Component {
     };
   };
 
-  selectPhoto = character => {
-    const findCharacter = this.state.notChosenPic.find(item => item.character === character);
+  selectPhoto = number => {
+    const findNumber = this.state.notChosenPic.find(item => item.number === number);
 
-    if (findCharacter === undefined) {
+    if (findNumber === undefined) {
       this.setState({
         message: "Really. You just lost :(",
         userHighScore: (this.state.userScore > this.state.userHighScore) ? this.state.userScore : this.state.userHighScore,
@@ -34,12 +34,12 @@ class App extends Component {
         notChosenPic: images
       });
     } else {
-      const findNewCharacter = this.state.notChosenPic.filter(item => item.character !== character);
+      const findNewNumber = this.state.notChosenPic.filter(item => item.number !== number);
       this.setState({
         message: "You just passed to the next grade :D",
         userScore: this.state.userScore + 1,
         images: images,
-        notChosenPic: findNewCharacter
+        notChosenPic: findNewNumber
       });
   } 
   this.randomPics(images);
@@ -48,7 +48,7 @@ class App extends Component {
   render() {
     return (
       <Wrapper>
-        <Navbar
+        <Nav
         message = { this.state.message }
         userScore = { this.state.userScore }
         userHighScore = { this.state.userHighScore }
@@ -56,8 +56,8 @@ class App extends Component {
         <Title />
         {
           this.state.images.map(item => (
-            <Characters
-              character = { item.character }
+            <Numbercard
+              number = { item.number }
               photo = { item.image }
               selectPhoto = { this.selectPhoto }
               userScore = { this.state.userScore }
